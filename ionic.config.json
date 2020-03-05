@@ -1,0 +1,7 @@
+{
+  "name": "PBHS-Helper",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
