@@ -1,7 +1,8 @@
 {
   "name": "PBHS-Helper",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular",
   "id": "f42c77cc"
