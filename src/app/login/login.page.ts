@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 import {Router} from '@angular/router';
 const { Storage } = Plugins;
@@ -15,9 +16,11 @@ async function fetchAsync(url) {
 })
 
 export class LoginPage implements OnInit {
+
+  constructor(private router: Router, public loadingController: LoadingController) { }
+
   username: string;
   password: string;
-  constructor(private router: Router) { }
 
   async setLogin(uun, upw) {
     await Storage.set({
@@ -34,18 +37,27 @@ export class LoginPage implements OnInit {
     console.log(user);
   }
 
-
-  ngOnInit() {
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Logging In...',
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
   }
+
+
+  ngOnInit() {}
 
   submitForm() {
     const endpoint = `https://pinnacle-scraper.herokuapp.com/api?un=${this.username}&pw=${this.password}`;
+    this.presentLoading();
     fetchAsync(endpoint).then(data => {
+      this.loadingController.dismiss();
       if (data === 'Username or Password was Incorrect') {
         console.log('Yo.');
       } else {
         this.setLogin(this.username, this.password).then(r => {
-          this.router.navigate(['/home']);
+          this.router.navigateByUrl('/home');
         });
       }});
   }
