@@ -107,6 +107,9 @@ export class AssignmentsPage implements OnInit {
     if (Number.isNaN(grade)) {
       g1.style.backgroundColor = '#F0F0F0';
       g1.textContent = '';
+    } else if (grade === Number.POSITIVE_INFINITY || grade === Number.NEGATIVE_INFINITY) {
+      g1.style.backgroundColor = '#3F51B5';
+      g1.textContent = '100%';
     } else {
       g1.style.backgroundColor = this.selectColor(grade);
       g1.textContent = grade + '%';
