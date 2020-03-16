@@ -1,11 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Grades
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
     <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
-        <ion-refresher-content>
+        <ion-refresher-content
+                pullingIcon="arrow-down"
+                pullingText="Refresh"
+                refreshingSpinner="circular"
+                refreshingText="Refreshing...">
         </ion-refresher-content>
     </ion-refresher>
-    <h1 style="margin-left: 15px">
-        Grades
-    </h1>
     <ul class="gradesUL" id="rows">
     </ul>
+    <a (click)="signOut()" class="currentUser" id="currentUserGR">
+        <b>Sign Out: 06########</b>
+    </a>
 </ion-content>

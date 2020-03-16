@@ -150,7 +150,8 @@ export class GradesPage implements OnInit {
     g1.onclick = () => {
       const navigationExtras: NavigationExtras = {
         state: {
-          jsonData: assignments
+          jsonData: assignments,
+          title: name
         }
       };
       this.router.navigate(['/assignments'], navigationExtras);
@@ -159,7 +160,23 @@ export class GradesPage implements OnInit {
     rows.append(nameContainer);
     rows.append(gradeContainer);
   }
+
+  async setLogin(uun, upw) {
+    await Storage.set({
+      key: 'login',
+      value: JSON.stringify({
+        un: uun,
+        pw: upw
+      })
+    });
+  }
+
+  signOut() {
+    this.setLogin('', '').then(r => this.router.navigateByUrl('/login'));
+  }
+
   ngOnInit() {
+    this.getLogin().then(r => document.getElementById('currentUserGR').innerHTML = `Sign Out: <b>${r.un}</b>`);
     this.presentLoading();
     this.getLogin().then(r => {
       const endpoint = `https://pinnacle-scraper.herokuapp.com/api?un=${r.un}&pw=${r.pw}`;

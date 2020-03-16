@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {LoadingController} from '@ionic/angular';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Plugins} from '@capacitor/core';
 
+const {Storage} = Plugins;
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.page.html',
@@ -10,12 +12,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 export class AssignmentsPage implements OnInit {
 
-  assignments: string;
+    assignments: string;
+    title: string;
 
   constructor(private route: ActivatedRoute, private router: Router, public loadingController: LoadingController) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
-        this.assignments = this.router.getCurrentNavigation().extras.state.jsonData;
+          this.assignments = this.router.getCurrentNavigation().extras.state.jsonData;
+          this.title = this.router.getCurrentNavigation().extras.state.title;
       }
     });
   }
@@ -86,43 +90,70 @@ export class AssignmentsPage implements OnInit {
       return g74;
     }
     if (grade >= 72) {
-      return g72;
+        return g72;
     }
-    if (grade >= 70) {
-      return g70;
-    }
-    if (grade < 70) {
-      return g00;
-    }
+      if (grade >= 70) {
+          return g70;
+      }
+      if (grade < 70) {
+          return g00;
+      }
   }
 
-  addGrade(name, grade) {
-    const rows = document.getElementById('assignmentRows');
-    const nameContainer = document.createElement('li');
-    const n1 = document.createElement('h2');
-    n1.textContent = name;
-    nameContainer.append(n1);
-    const gradeContainer = document.createElement('li');
-    const g1 = document.createElement('h3');
-    if (Number.isNaN(grade)) {
-      g1.style.backgroundColor = '#F0F0F0';
+    async getLogin() {
+        const ret = await Storage.get({key: 'login'});
+        return JSON.parse(ret.value);
+    }
+
+    async setLogin(uun, upw) {
+        await Storage.set({
+            key: 'login',
+            value: JSON.stringify({
+                un: uun,
+                pw: upw
+            })
+        });
+    }
+
+    addGrade(name, grade) {
+        const rows = document.getElementById('assignmentRows');
+        const nameContainer = document.createElement('li');
+        const n1 = document.createElement('h2');
+        n1.textContent = name;
+        nameContainer.append(n1);
+        const gradeContainer = document.createElement('li');
+        const g1 = document.createElement('h3');
+        if (Number.isNaN(grade)) {
+            g1.style.backgroundColor = '#F0F0F0';
       g1.textContent = '';
     } else if (grade === Number.POSITIVE_INFINITY || grade === Number.NEGATIVE_INFINITY) {
-      g1.style.backgroundColor = '#3F51B5';
-      g1.textContent = '100%';
-    } else {
-      g1.style.backgroundColor = this.selectColor(grade);
-      g1.textContent = grade + '%';
+            g1.style.backgroundColor = '#3F51B5';
+            g1.textContent = '100%';
+        } else {
+            g1.style.backgroundColor = this.selectColor(grade);
+            g1.textContent = grade + '%';
+        }
+        gradeContainer.append(g1);
+        rows.append(nameContainer);
+        rows.append(gradeContainer);
     }
-    gradeContainer.append(g1);
-    rows.append(nameContainer);
-    rows.append(gradeContainer);
-  }
 
-  ngOnInit() {
-    for (const i of JSON.parse(this.assignments)) {
-      this.addGrade(i.Name, Math.floor((parseFloat(i.Points) / parseFloat(i.Max)) * 100));
+    signOut() {
+        this.setLogin('', '').then(r => this.router.navigateByUrl('/login'));
     }
-  }
+
+    ngOnInit() {
+        document.getElementById('asTitle').textContent = 'Assignments - ' + this.title;
+        this.getLogin().then(r => document.getElementById('currentUserAS').innerHTML = `Sign Out: <b>${r.un}</b>`);
+        for (const i of JSON.parse(this.assignments)) {
+            this.addGrade(i.Name, Math.floor((parseFloat(i.Points) / parseFloat(i.Max)) * 100));
+        }
+        if (this.assignments === '[]') {
+            const rows = document.getElementById('assignmentRows');
+            const label = document.createElement('h2');
+            label.textContent = 'No assignments have been assigned.';
+            rows.append(label);
+        }
+    }
 }
 

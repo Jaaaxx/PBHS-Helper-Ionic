@@ -1,23 +1,21 @@
-<ion-content [fullscreen]="true">
-  <h1>
-    PBHS Helper
-  </h1>
-  <ion-button (click)="gotoGrades()" size="small">
-      Grades
-  </ion-button>
-  <br>
-    <ion-button (click)="gotoCalendar()" size="small">
-        Calendar
-    </ion-button>
-    <br>
-    <ion-button (click)="gotoVC()" size="small">
-        Counselor
-    </ion-button>
-    <br>
-    <ion-button (click)="signOut()" size="small">
-        Sign Out
-    </ion-button>
-    <p id="signed_in">
-        Signed in as <b>06########</b>
-    </p>
+<ion-content>
+    <div id="homeContent">
+        <h1>
+            PBHS Helper
+        </h1>
+        <ion-button (click)="gotoGrades()" size="small">
+            Grades
+        </ion-button>
+        <br>
+        <ion-button (click)="gotoCalendar()" size="small">
+            Calendar
+        </ion-button>
+        <br>
+        <ion-button (click)="gotoVC()" size="small">
+            Counselor
+        </ion-button>
+    </div>
+    <a (click)="signOut()" class="currentUser" id="currentUserHO">
+        <b>Sign Out: 06########</b>
+    </a>
 </ion-content>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Plugins} from '@capacitor/core';
+import {LoadingController} from '@ionic/angular';
 
 const {Storage} = Plugins;
 
@@ -11,7 +12,12 @@ const {Storage} = Plugins;
 })
 export class HomePage implements OnInit {
 
-    constructor(private router: Router) {
+    constructor(private router: Router, public loadingController: LoadingController) {
+    }
+
+    async getLogin() {
+        const ret = await Storage.get({key: 'login'});
+        return JSON.parse(ret.value);
     }
 
     async setLogin(uun, upw) {
@@ -24,16 +30,17 @@ export class HomePage implements OnInit {
         });
     }
 
-    async getLogin() {
-        const ret = await Storage.get({key: 'login'});
-        return JSON.parse(ret.value);
+    signOut() {
+        this.setLogin('', '').then(r => this.router.navigateByUrl('/login'));
     }
 
     ngOnInit() {
+        this.getLogin().then(r => document.getElementById('currentUserHO').innerHTML = `Sign Out: <b>${r.un}</b>`);
     }
 
     ionViewWillEnter() {
-        this.getLogin().then(r => document.getElementById('signed_in').innerHTML = `Signed in as <b>${r.un}</b>`);
+        this.loadingController.dismiss().catch(() => {
+        });
     }
 
     gotoVC() {
@@ -42,10 +49,6 @@ export class HomePage implements OnInit {
 
     gotoGrades() {
         this.router.navigateByUrl('/grades');
-    }
-
-    signOut() {
-        this.setLogin('', '').then(r => this.router.navigateByUrl('/login'));
     }
 
     gotoCalendar() {
