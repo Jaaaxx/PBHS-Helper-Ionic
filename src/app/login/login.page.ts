@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
-import { Plugins } from '@capacitor/core';
+import {Component, OnInit} from '@angular/core';
+import {LoadingController} from '@ionic/angular';
+import {Plugins} from '@capacitor/core';
 import {Router} from '@angular/router';
-const { Storage } = Plugins;
+
+const {Storage} = Plugins;
 
 async function fetchAsync(url) {
-  const response = await fetch(url);
-  return await response.text();
+    const response = await fetch(url);
+    return await response.text();
 }
 
 @Component({
@@ -42,24 +43,20 @@ export class LoginPage implements OnInit {
       message: 'Logging In...',
     });
     await loading.present();
-    const { role, data } = await loading.onDidDismiss();
   }
 
 
   ngOnInit() {}
 
   submitForm() {
-    const endpoint = `https://pinnacle-scraper.herokuapp.com/api?un=${this.username}&pw=${this.password}`;
+      const endpoint = `https://pinnacle-scraper.herokuapp.com/verify?un=${this.username}&pw=${this.password}`;
     this.presentLoading();
     fetchAsync(endpoint).then(data => {
-      this.loadingController.dismiss();
-      if (data === 'Username or Password was Incorrect') {
-        console.log('Yo.');
-      } else {
-        this.setLogin(this.username, this.password).then(r => {
-          this.router.navigateByUrl('/home');
-        });
-      }});
+        this.loadingController.dismiss();
+        if (data === 'True') {
+            this.setLogin(this.username, this.password).then(r => this.router.navigateByUrl('/home'));
+        }
+    });
   }
 }
 

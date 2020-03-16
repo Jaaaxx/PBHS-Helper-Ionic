@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-const { Storage } = Plugins;
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {Component} from '@angular/core';
+import {Platform} from '@ionic/angular';
+import {SplashScreen} from '@ionic-native/splash-screen/ngx';
+import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {Router} from '@angular/router';
 import {Plugins} from '@capacitor/core';
+
+const {Storage} = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -21,27 +22,16 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  async setLogin(uun, upw) {
-    await Storage.set({
-      key: 'login',
-      value: JSON.stringify({
-        un: uun,
-        pw: upw
-      })
-    });
-  }
   async getLogin() {
     const ret = await Storage.get({ key: 'login' });
-    const user = JSON.parse(ret.value);
-    console.log(user);
+    return JSON.parse(ret.value);
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.getLogin().then(data => {
-        // @ts-ignore
+      this.getLogin().then(r => {
         if (r.un && r.pw) {
           this.router.navigateByUrl('/home');
         } else {
