@@ -18,7 +18,36 @@ async function fetchAsync(url) {
 
 export class GradesPage implements OnInit {
 
-  constructor(private router: Router, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(private router: Router, public loadingController: LoadingController,
+              public navCtrl: NavController) {
+  }
+
+  doRefresh(event) {
+    const rows = document.getElementById('rows');
+    const rowChildren = rows.children as HTMLCollectionOf<HTMLElement>;
+    // @ts-ignore
+    for (const child of rowChildren) {
+      for (const innerChild of child.children) {
+        innerChild.disabled = true;
+      }
+    }
+    rows.classList.add('blur');
+    this.getLogin().then(r => {
+      const endpoint = `https://pinnacle-scraper.herokuapp.com/api?un=${r.un}&pw=${r.pw}`;
+      fetchAsync(endpoint).then(data => {
+        rows.classList.remove('blur');
+        event.target.complete();
+        rows.textContent = '';
+        const jData = JSON.parse(data);
+        for (const i of jData) {
+          if (i.Grade === '') {
+            this.addGrade(i.Course, '', JSON.stringify(i.Assignments));
+          } else {
+            this.addGrade(i.Course, i.Grade + '%', JSON.stringify(i.Assignments));
+          }
+        }
+      });
+    });
   }
 
   async getLogin() {
@@ -130,7 +159,6 @@ export class GradesPage implements OnInit {
     rows.append(nameContainer);
     rows.append(gradeContainer);
   }
-
   ngOnInit() {
     this.presentLoading();
     this.getLogin().then(r => {

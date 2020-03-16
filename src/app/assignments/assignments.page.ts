@@ -105,6 +105,7 @@ export class AssignmentsPage implements OnInit {
     const gradeContainer = document.createElement('li');
     const g1 = document.createElement('h3');
     if (Number.isNaN(grade)) {
+      g1.style.backgroundColor = '#F0F0F0';
       g1.textContent = '';
     } else {
       g1.style.backgroundColor = this.selectColor(grade);
