@@ -31,7 +31,7 @@ export class HomePage implements OnInit {
     }
 
     signOut() {
-        this.setLogin('', '').then(r => this.router.navigateByUrl('/login'));
+        this.router.navigateByUrl('/login');
     }
 
     ngOnInit() {

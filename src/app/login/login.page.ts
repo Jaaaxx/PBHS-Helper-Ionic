@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoadingController} from '@ionic/angular';
+import {LoadingController, Platform} from '@ionic/angular';
 import {Plugins} from '@capacitor/core';
 import {Router} from '@angular/router';
 
@@ -18,7 +18,8 @@ async function fetchAsync(url) {
 
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, public loadingController: LoadingController) { }
+  constructor(private router: Router, public loadingController: LoadingController, private platform: Platform) {
+  }
 
   username: string;
   password: string;
@@ -45,17 +46,17 @@ export class LoginPage implements OnInit {
     await loading.present();
   }
 
-
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   submitForm() {
     const endpoint = `https://pinnacle-scraper.herokuapp.com/verify?un=${this.username}&pw=${this.password}`;
     this.presentLoading();
     fetchAsync(endpoint).then(data => {
-        this.loadingController.dismiss();
-        if (data === 'True') {
-            this.setLogin(this.username, this.password).then(r => this.router.navigateByUrl('/home'));
-        }
+      this.loadingController.dismiss();
+      if (data === 'True') {
+        this.setLogin(this.username, this.password).then(r => this.router.navigateByUrl('/home'));
+      }
     });
   }
 }

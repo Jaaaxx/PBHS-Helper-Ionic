@@ -172,7 +172,7 @@ export class GradesPage implements OnInit {
   }
 
   signOut() {
-    this.setLogin('', '').then(r => this.router.navigateByUrl('/login'));
+    this.router.navigateByUrl('/login');
   }
 
   ngOnInit() {
