@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LoadingController, Platform} from '@ionic/angular';
 import {Plugins} from '@capacitor/core';
+import {RouterOutletService} from '../RouterOutletService';
 import {Router} from '@angular/router';
-import {Nav} from 'ionic-angular';
 
 const {Storage} = Plugins;
 
@@ -20,7 +20,7 @@ async function fetchAsync(url) {
 export class LoginPage implements OnInit {
 
   constructor(private router: Router, public loadingController: LoadingController,
-              private platform: Platform, private nav: Nav) {
+              private platform: Platform, private routerOutletService: RouterOutletService) {
   }
 
   username: string;
@@ -49,11 +49,11 @@ export class LoginPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.nav.swipeBackEnabled = false;
+    this.routerOutletService.swipebackEnabled = false;
   }
 
   ionViewWillLeave() {
-    this.nav.swipeBackEnabled = true;
+    this.routerOutletService.swipebackEnabled = true;
   }
 
   ngOnInit() {
