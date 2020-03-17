@@ -49,6 +49,18 @@
   width: 20vw;
 }
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-scheme-border: #000;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-scheme-border: #fff;
+  }
+}
+
 .gradesUL li button {
   float: right;
   font-size: 3vh;
@@ -58,6 +70,7 @@
   border-style: solid;
   border-width: 1px;
   border-radius: 5px;
+  border-color: var(--color-scheme-border);
 }
 
 .gradesUL li > h3 {
