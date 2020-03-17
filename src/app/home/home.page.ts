@@ -53,7 +53,11 @@ export class HomePage implements OnInit {
     }
 
     gotoVC() {
-        window.open('https://bcps.browardschools.com/VirtualCounselor/', '_system', 'location=yes');
+        if (typeof (window.open) === 'function') {
+            window.open('https://bcps.browardschools.com/VirtualCounselor/', '_system');
+        } else {
+            window.location.href = 'https://bcps.browardschools.com/VirtualCounselor/';
+        }
     }
 
     gotoGrades() {

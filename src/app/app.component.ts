@@ -33,7 +33,7 @@ export class AppComponent implements AfterViewInit {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.hide();
+      this.statusBar.styleBlackTranslucent();
       this.splashScreen.hide();
       this.getLogin().then(r => {
         try {
