@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoadingController, Platform} from '@ionic/angular';
 import {Plugins} from '@capacitor/core';
 import {Router} from '@angular/router';
+import {Nav} from 'ionic-angular';
 
 const {Storage} = Plugins;
 
@@ -18,7 +19,8 @@ async function fetchAsync(url) {
 
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, public loadingController: LoadingController, private platform: Platform) {
+  constructor(private router: Router, public loadingController: LoadingController,
+              private platform: Platform, private nav: Nav) {
   }
 
   username: string;
@@ -26,7 +28,7 @@ export class LoginPage implements OnInit {
 
   async setLogin(uun, upw) {
     await Storage.set({
-    key: 'login',
+      key: 'login',
       value: JSON.stringify({
         un: uun,
         pw: upw
@@ -44,6 +46,14 @@ export class LoginPage implements OnInit {
       message: 'Logging In...',
     });
     await loading.present();
+  }
+
+  ionViewWillEnter() {
+    this.nav.swipeBackEnabled = false;
+  }
+
+  ionViewWillLeave() {
+    this.nav.swipeBackEnabled = true;
   }
 
   ngOnInit() {
