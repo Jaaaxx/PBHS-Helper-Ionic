@@ -1,9 +1,0 @@
-{
-  "appId": "io.ionic.starter",
-  "appName": "PBHS-Helper",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "www",
-  "cordova": {},
-  "windowsAndroidStudioPath": "C:\\Users\\Fake News\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\192.6200805\\bin\\studio64.exe"
-}
