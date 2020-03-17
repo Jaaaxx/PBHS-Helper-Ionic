@@ -35,8 +35,6 @@ export class AppComponent {
         try {
           if (r.un === '' || r.pw === '') {
             this.router.navigateByUrl('/login');
-          } else {
-            this.router.navigateByUrl('/home');
           }
         } catch {
           this.router.navigateByUrl('/login');
