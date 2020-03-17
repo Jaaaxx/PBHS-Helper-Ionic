@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
-import {Platform} from '@ionic/angular';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {IonRouterOutlet, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {Router} from '@angular/router';
 import {Plugins} from '@capacitor/core';
+import {RouterOutletService} from './RouterOutletService';
 
 const {Storage} = Plugins;
 
@@ -12,13 +13,16 @@ const {Storage} = Plugins;
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+
+  @ViewChild(IonRouterOutlet, {static: false}) routerOutlet: IonRouterOutlet;
 
   constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private router: Router,
-    private statusBar: StatusBar) {
+      private platform: Platform,
+      private splashScreen: SplashScreen,
+      private router: Router,
+      private statusBar: StatusBar,
+      private routerOutletService: RouterOutletService) {
     this.initializeApp();
   }
 
@@ -41,5 +45,9 @@ export class AppComponent {
         }
       });
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.routerOutletService.init(this.routerOutlet);
   }
 }
