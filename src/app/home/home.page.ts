@@ -35,11 +35,20 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit() {
-        this.getLogin().then(r => document.getElementById('currentUserHO').innerHTML = `Sign Out: <b>${r.un}</b>`);
     }
 
     ionViewWillEnter() {
+        this.getLogin().then(r => document.getElementById('currentUserHO').innerHTML = `Sign Out: <b>${r.un}</b>`);
         this.loadingController.dismiss().catch(() => {
+        });
+        this.getLogin().then(r => {
+            try {
+                if (r.un === '' || r.pw === '') {
+                    this.router.navigateByUrl('/login');
+                }
+            } catch {
+                this.router.navigateByUrl('/login');
+            }
         });
     }
 

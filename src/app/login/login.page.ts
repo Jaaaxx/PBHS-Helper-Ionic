@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   submitForm() {
-      const endpoint = `https://pinnacle-scraper.herokuapp.com/verify?un=${this.username}&pw=${this.password}`;
+    const endpoint = `https://pinnacle-scraper.herokuapp.com/verify?un=${this.username}&pw=${this.password}`;
     this.presentLoading();
     fetchAsync(endpoint).then(data => {
         this.loadingController.dismiss();

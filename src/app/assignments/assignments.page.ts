@@ -125,7 +125,7 @@ export class AssignmentsPage implements OnInit {
         const g1 = document.createElement('h3');
         if (Number.isNaN(grade)) {
             g1.style.backgroundColor = '#F0F0F0';
-      g1.textContent = '';
+            g1.textContent = '';
     } else if (grade === Number.POSITIVE_INFINITY || grade === Number.NEGATIVE_INFINITY) {
             g1.style.backgroundColor = '#3F51B5';
             g1.textContent = '100%';

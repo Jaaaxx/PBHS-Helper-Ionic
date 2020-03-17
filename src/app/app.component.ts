@@ -23,18 +23,22 @@ export class AppComponent {
   }
 
   async getLogin() {
-    const ret = await Storage.get({ key: 'login' });
+    const ret = await Storage.get({key: 'login'});
     return JSON.parse(ret.value);
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.hide();
       this.splashScreen.hide();
       this.getLogin().then(r => {
-        if (r.un && r.pw) {
-          this.router.navigateByUrl('/home');
-        } else {
+        try {
+          if (r.un === '' || r.pw === '') {
+            this.router.navigateByUrl('/login');
+          } else {
+            this.router.navigateByUrl('/home');
+          }
+        } catch {
           this.router.navigateByUrl('/login');
         }
       });
