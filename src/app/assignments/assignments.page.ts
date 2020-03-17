@@ -139,7 +139,7 @@ export class AssignmentsPage implements OnInit {
     }
 
     signOut() {
-        this.router.navigateByUrl('/login');
+        this.setLogin('', '').then(r => this.router.navigateByUrl('/login'));
     }
 
     ngOnInit() {

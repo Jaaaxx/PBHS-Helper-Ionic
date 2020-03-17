@@ -78,9 +78,42 @@
   align-items: center;
 }
 
+#homeContent ion-button {
+  height: 20vh;
+  width: 85vw;
+  padding-top: 2vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+#homeContent h1 {
+  font-size: 8vh;
+}
+
 #homeContent {
   width: 100vw;
   min-height: 90vh;
+  text-align: center;
+}
+
+#loginContent {
+  text-align: center;
+  margin-top: 25vh;
+}
+
+#loginContent h1 {
+  font-size: 6vw;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+:root {
+  #loginContent ion-input {
+    width: 70vw;
+    margin: 2.5vh 15vw;
+    border: 1px solid #ccc;
+    box-sizing: border-box
+  }
 }
 
 ion-refresher ion-refresher-content {
