@@ -36,6 +36,18 @@
         <param name="ios-package" value="CDVSplashScreen" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="UIInAppBrowser">
+        <param name="ios-package" value="CDVUIInAppBrowser" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="WKInAppBrowser">
+        <param name="ios-package" value="CDVWKInAppBrowser" />
+        <param name="onload" value="true" />
+    </feature>
     <name>Helper</name>
     <description>Check your grades, view the school calendar, check the block schedule, and more with the PBHS Helper.
     </description>
@@ -48,7 +60,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="*" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-router-outlet [swipeGesture]=true></ion-router-outlet>\n<ion-content class=\"overflowIonContent\">\n    <div id=\"homeContent\">\n        <h1>\n            PBHS Helper\n        </h1>\n        <ion-button (click)=\"gotoGrades()\" size=\"small\">\n            Grades\n        </ion-button>\n        <br>\n        <ion-button (click)=\"gotoCalendar()\" size=\"small\">\n            Calendar\n        </ion-button>\n        <br>\n        <ion-button (click)=\"gotoVC()\" size=\"small\">\n            Counselor\n        </ion-button>\n    </div>\n    <a (click)=\"signOut()\" class=\"currentUser\" id=\"currentUserHO\">\n        <b>Sign Out: 06########</b>\n    </a>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-router-outlet [swipeGesture]=true></ion-router-outlet>\n<ion-content class=\"overflowIonContent\">\n    <div id=\"homeContent\">\n        <h1>\n            PBHS Helper\n        </h1>\n        <ion-button (click)=\"gotoGrades()\" size=\"small\">\n            Grades\n        </ion-button>\n        <br>\n        <ion-button (click)=\"gotoCalendar()\" size=\"small\">\n            Calendar\n        </ion-button>\n        <br>\n        <ion-button onclick=\"window.open('https://bcps.browardschools.com/VirtualCounselor/')\" size=\"small\">\n            Counselor\n        </ion-button>\n    </div>\n    <a (click)=\"signOut()\" class=\"currentUser\" id=\"currentUserHO\">\n        <b>Sign Out: 06########</b>\n    </a>\n</ion-content>\n");
 
 /***/ }),
 
@@ -83,6 +83,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+/* harmony import */ var _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/in-app-browser/ngx */ "./node_modules/@ionic-native/in-app-browser/ngx/index.js");
+
 
 
 
@@ -90,9 +92,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const { Storage } = _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Plugins"];
 let HomePage = class HomePage {
-    constructor(router, loadingController) {
+    constructor(router, loadingController, iab) {
         this.router = router;
         this.loadingController = loadingController;
+        this.iab = iab;
     }
     getLogin() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
@@ -132,12 +135,7 @@ let HomePage = class HomePage {
         });
     }
     gotoVC() {
-        if (typeof (window.open) === 'function') {
-            window.open('https://bcps.browardschools.com/VirtualCounselor/', '_system');
-        }
-        else {
-            window.location.href = 'https://bcps.browardschools.com/VirtualCounselor/';
-        }
+        window.open('https://bcps.browardschools.com/VirtualCounselor/', '_system');
     }
     gotoGrades() {
         this.router.navigateByUrl('/grades');
@@ -148,7 +146,8 @@ let HomePage = class HomePage {
 };
 HomePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"] },
+    { type: _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_5__["InAppBrowser"] }
 ];
 HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -156,7 +155,8 @@ HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./home.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/home/home.page.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"],
+        _ionic_native_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_5__["InAppBrowser"]])
 ], HomePage);
 
 
