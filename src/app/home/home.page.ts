@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Plugins} from '@capacitor/core';
 import {LoadingController} from '@ionic/angular';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 const {Storage} = Plugins;
 
 @Component({
@@ -12,7 +12,8 @@ const {Storage} = Plugins;
 })
 export class HomePage implements OnInit {
 
-    constructor(private router: Router, public loadingController: LoadingController) {
+    constructor(private router: Router, public loadingController: LoadingController,
+                private iab: InAppBrowser) {
     }
 
     async getLogin() {
@@ -53,11 +54,7 @@ export class HomePage implements OnInit {
     }
 
     gotoVC() {
-        if (typeof (window.open) === 'function') {
-            window.open('https://bcps.browardschools.com/VirtualCounselor/', '_system');
-        } else {
-            window.location.href = 'https://bcps.browardschools.com/VirtualCounselor/';
-        }
+        this.iab.create('https://bcps.browardschools.com/VirtualCounselor/', '_system');
     }
 
     gotoGrades() {
