@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoadingController, NavController} from '@ionic/angular';
 import {Plugins} from '@capacitor/core';
 import {NavigationExtras, Router} from '@angular/router';
+import { TapticEngine } from '@ionic-native/taptic-engine/ngx';
 
 const {Storage} = Plugins;
 
@@ -19,10 +20,11 @@ async function fetchAsync(url) {
 export class GradesPage implements OnInit {
 
   constructor(private router: Router, public loadingController: LoadingController,
-              public navCtrl: NavController) {
+              public navCtrl: NavController, private taptic: TapticEngine) {
   }
 
   doRefresh(event) {
+    this.taptic.impact();
     const rows = document.getElementById('rows');
     const rowChildren = rows.children as HTMLCollectionOf<HTMLElement>;
     // @ts-ignore

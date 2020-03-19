@@ -34,6 +34,8 @@
 		54C28D6720064137BB688EE1 /* CDVUIInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E38956EC4E4781884946B2 /* CDVUIInAppBrowser.m */; };
 		3C5F970C635E492E86C27290 /* CDVWKInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F150F3BE74B42149B7F554B /* CDVWKInAppBrowser.m */; };
 		8B8077FF675D412CAEF02334 /* CDVWKInAppBrowserUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A74A502E0D494B06A4E96326 /* CDVWKInAppBrowserUIDelegate.m */; };
+		C87333D564D2423AACBF8F16 /* TapticEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F9CBCA7D7E47448197BCAB /* TapticEngine.m */; };
+		24504526E9C14176A39AB21A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4842BD8C1FAF4CD486C7FE49 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,9 @@
 		FB680ED5BCCE443CA9DE8001 /* CDVUIInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVUIInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVUIInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		F0E0C95BD6954245BF05C9F9 /* CDVWKInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVWKInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		041ED0D9D9294688B44804E7 /* CDVWKInAppBrowserUIDelegate.h */ = {isa = PBXFileReference; name = "CDVWKInAppBrowserUIDelegate.h"; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowserUIDelegate.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		C5F9CBCA7D7E47448197BCAB /* TapticEngine.m */ = {isa = PBXFileReference; name = "TapticEngine.m"; path = "cordova-plugin-taptic-engine/TapticEngine.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		FD134034DB354311A251BD6E /* TapticEngine.h */ = {isa = PBXFileReference; name = "TapticEngine.h"; path = "cordova-plugin-taptic-engine/TapticEngine.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		4842BD8C1FAF4CD486C7FE49 /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +133,7 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				ED9E67149C45434BAD0F3EC2 /* WebKit.framework in Frameworks */,
 				5CBD2475F4004C959A041777 /* Security.framework in Frameworks */,
+				24504526E9C14176A39AB21A /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +207,7 @@
 			children = (
 				754B6A3DD61B468FBF018CF8 /* WebKit.framework */,
 				FF6A51A91DE543329BEAE7B8 /* Security.framework */,
+				4842BD8C1FAF4CD486C7FE49 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -261,6 +268,8 @@
 				FB680ED5BCCE443CA9DE8001 /* CDVUIInAppBrowser.h */,
 				F0E0C95BD6954245BF05C9F9 /* CDVWKInAppBrowser.h */,
 				041ED0D9D9294688B44804E7 /* CDVWKInAppBrowserUIDelegate.h */,
+				C5F9CBCA7D7E47448197BCAB /* TapticEngine.m */,
+				FD134034DB354311A251BD6E /* TapticEngine.h */,
 			);
 			name = Plugins;
 			path = Helper/Plugins;
@@ -408,6 +417,7 @@
 				54C28D6720064137BB688EE1 /* CDVUIInAppBrowser.m in Sources */,
 				3C5F970C635E492E86C27290 /* CDVWKInAppBrowser.m in Sources */,
 				8B8077FF675D412CAEF02334 /* CDVWKInAppBrowserUIDelegate.m in Sources */,
+				C87333D564D2423AACBF8F16 /* TapticEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

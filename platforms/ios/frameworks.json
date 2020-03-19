@@ -1,4 +1,5 @@
 {
     "WebKit.framework": 1,
-    "Security.framework": 1
+    "Security.framework": 1,
+    "AudioToolbox.framework": 1
 }
